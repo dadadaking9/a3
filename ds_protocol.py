@@ -1,12 +1,6 @@
-# ds_protocol.py
-
-# Starter code for assignment 3 in ICS 32 Programming with Software Libraries in Python
-
-# Replace the following placeholders with your information.
-
-# NAME
-# EMAIL
-# STUDENT ID
+# Brandon CHan
+# chanbz@uci.edu
+# 12383908
 
 import json
 from collections import namedtuple

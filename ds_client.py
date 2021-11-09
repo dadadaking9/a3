@@ -1,10 +1,6 @@
-# Starter code for assignment 3 in ICS 32 Programming with Software Libraries in Python
-
-# Replace the following placeholders with your information.
-
-# NAME
-# EMAIL
-# STUDENT ID
+# Brandon CHan
+# chanbz@uci.edu
+# 12383908
 
 def send(server:str, port:int, username:str, password:str, message:str, bio:str=None):
   '''
