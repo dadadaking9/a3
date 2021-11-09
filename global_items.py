@@ -2,7 +2,6 @@
 # chanbz@uci.edu
 # 12383908
 
-#global accessed_file
 accessed_file = None
 accessed_file_path = None
 edit_requests = []

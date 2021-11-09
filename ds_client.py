@@ -1,7 +1,7 @@
 # Brandon CHan
 # chanbz@uci.edu
 # 12383908
-
+import socket
 def send(server:str, port:int, username:str, password:str, message:str, bio:str=None):
   '''
   The send function joins a ds server and sends a message, bio, or both
@@ -13,4 +13,13 @@ def send(server:str, port:int, username:str, password:str, message:str, bio:str=
   :param message: The message to be sent to the server.
   :param bio: Optional, a bio for the user.
   '''
+  HOST = server
+  PORT = port
+
+  with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client:
+    client.connect((server, port))
+    
   pass
+
+
+

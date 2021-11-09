@@ -23,3 +23,8 @@ def extract_json(json_msg:str) -> DataTuple:
     print("Json cannot be decoded.")
 
   return DataTuple(foo, baz)
+
+
+def join(user: None, password: None):
+  '''Accepts either an existing user and password, or new user and password.'''
+  pass
