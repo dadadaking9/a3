@@ -17,7 +17,6 @@ def send(server:str, port:int, username:str, password:str, message:str, bio:str=
   '''
   HOST = '168.235.86.101'
   PORT = 3021
-  message = None # In the case no message is passed through, don't send a post
   
   with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as client: # client is using ipv4 and is TCP [sockstream]
     client.connect((HOST, PORT)) # Connect to the server
@@ -31,13 +30,26 @@ def send(server:str, port:int, username:str, password:str, message:str, bio:str=
     srv_msg = recv.readline()
     server_response = json.loads(srv_msg)
     token = server_response['response']['token']
-    print("Response:", srv_msg,) #DELETE | This tells us the server's response
-    send.write(ds_protocol.post(token, message) + '\r\n') # This might break if 
+    print("Response:", srv_msg) #DELETE | This tells us the server's response
+
+    #print('message type:', type(message))
+    #the_message = json.loads(message)
+    #the_message = the_message["post"]['entry']
+    #the_message = message.get_entry()
+    #print('the_message:', the_message)
+    
+
+    send.write(ds_protocol.post(token, message) + '\r\n') # This might break if that post doesn't exist. How can we avoid that?
     send.flush()
     srv_msg = recv.readline()
     server_response = json.loads(srv_msg)
     print(server_response)
 
+    send.write(ds_protocol.bio(token, bio) + '\r\n')
+    send.flush()
+    srv_msg = recv.readline()
+    server_response = json.loads(srv_msg)
+    print(server_response)
 
-#send('168.235.86.101', 3021, 'dadadaking9', 'adgjl123', 'hello fellow suffering students', 'crying compsci student')
+    
 

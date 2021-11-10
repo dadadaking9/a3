@@ -24,11 +24,14 @@ def extract_json(json_msg:str) -> DataTuple:
 
   return DataTuple(foo, baz)
 
-def bio():
-  pass
+def bio(token: str, biography: dict):
+  '''Returns the data neccessary to post a bio to the website given the token'''
+  data = {"token":token, "bio": biography}
+  return json.dumps(data)
+  
 
 def post(token: str, message):
-  '''Resturns the data neccessary to post a message to the website given the user token and the message that is wished to be posted (given from a dsu profile file)'''
+  '''Returns the data neccessary to post a message to the website given the user token and the message that is wished to be posted (given from a dsu profile file)'''
   data = {"token":token, "post": message}
   return json.dumps(data)
 

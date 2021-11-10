@@ -194,6 +194,13 @@ def edit_cmd(command): # Fix 3+ combo
 
    if not (edited_properties["-addpost"] == None):
         g.accessed_file.add_post(p.Post(entry=edited_properties["-addpost"]))
+        onlinep = input('Post Online? Y for yes, anything else for No')
+        if onlinep == 'Y':
+                users_posts = g.accessed_file.get_posts()
+
+                ds_client.send('168.235.86.101', 3021, g.accessed_file.username, g.accessed_file.password, users_posts[len(users_posts) - 1])
+                #ds_client.send('168.235.86.101', 3021, g.accessed_file.username, g.accessed_file.password, passed_post, g.accessed_file.bio)
+
 
    if not (edited_properties["-delpost"]) == None:
         g.accessed_file.del_post(int(edited_properties["-delpost"])) #Check if ' -delpost- is actually an int
@@ -233,12 +240,18 @@ def print_cmd(command):
            
 def send_cmd(command):
         '''Given the index of the post of the open file, send the post in to the website'''
-        try:
-                users_posts = g.accessed_file.get_posts()
-                # What if the profile's specified post doesn't exist?
-                ds_client.send('168.235.86.101', 3021, g.accessed_file.username, g.accessed_file.password, users_posts[int(command[2])], g.accessed_file.bio)
-        except:
-                error()
+        #server:str, port:int, username:str, password:str, message:str, bio:str=None)
+        # Add a try here
+        users_posts = g.accessed_file.get_posts()
+        passed_post = ' '
+
+        if len(users_posts) <= int(command[2]): #If the requested post doesn't exist, pass empty string
+                passed_post = ' '
+        else:
+                passed_post = users_posts[int(command[2])] # Otherwise, pass the indicated post
+        ds_client.send('168.235.86.101', 3021, g.accessed_file.username, g.accessed_file.password, passed_post, g.accessed_file.bio)
+        # Add an except here
+
 
 def error():
         '''Prints 'ERROR'''
