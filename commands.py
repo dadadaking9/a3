@@ -6,6 +6,7 @@ import global_items as g
 from pathlib import Path
 import Profile as p
 import user_interface_messages
+import ds_client
 
 def list_iterative(command):
         '''Runs the list command along with user-specifications iteratively'''
@@ -230,6 +231,15 @@ def print_cmd(command):
         except:
                 error()
            
+def send_cmd(command):
+        '''Given the index of the post of the open file, send the post in to the website'''
+        try:
+                users_posts = g.accessed_file.get_posts()
+                # What if the profile's specified post doesn't exist?
+                ds_client.send('168.235.86.101', 3021, g.accessed_file.username, g.accessed_file.password, users_posts[int(command[2])], g.accessed_file.bio)
+        except:
+                error()
+
 def error():
         '''Prints 'ERROR'''
         print('ERROR')

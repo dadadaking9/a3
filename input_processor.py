@@ -6,9 +6,10 @@ import global_items as g
 from pathlib import Path
 import commands as c
 import user_interface_messages
+
 def cmd_checker(user_input)-> bool:
         '''Checks whether the user-entered command is one that the program can process'''
-        commands = ['L ', 'C ', 'D ', 'R ', 'O ', 'E ', 'P '] # Q, rather than a command, is set up as a program quitter.
+        commands = ['L ', 'C ', 'D ', 'R ', 'O ', 'E ', 'P ', 'S '] # Q, rather than a command, is set up as a program quitter.
         if user_input == 'admin': # Edge Case
                 return True
 
@@ -111,6 +112,8 @@ def cmd_processor(command):
                 c.edit_cmd(command)
         elif primary_command == 'P':
                 c.print_cmd(command)
+        elif primary_command == 'S':
+                c.send_cmd(command)
         elif command == 'admin':
                 g.admin = True
 

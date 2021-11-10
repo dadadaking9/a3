@@ -24,7 +24,17 @@ def extract_json(json_msg:str) -> DataTuple:
 
   return DataTuple(foo, baz)
 
-
-def join(user: None, password: None):
-  '''Accepts either an existing user and password, or new user and password.'''
+def bio():
   pass
+
+def post(token: str, message):
+  '''Resturns the data neccessary to post a message to the website given the user token and the message that is wished to be posted (given from a dsu profile file)'''
+  data = {"token":token, "post": message}
+  return json.dumps(data)
+
+
+def join(username: str, password: str):
+  '''Returns the JSON data neccessary to join the website given a username and password'''
+  data = {"join": {"username": username,"password": password,"token":""}}
+  return json.dumps(data)
+  
